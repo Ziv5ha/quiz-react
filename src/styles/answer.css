@@ -1,0 +1,24 @@
+.answer {
+  width: 80vw;
+  height: 15vh;
+  border-radius: 0.5em;
+  border: none;
+  font-size: 2em;
+  box-shadow: 0 0 5px 1px rgb(82, 82, 82);
+}
+.answer:nth-child(1) {
+  background-color: #e21c3d;
+}
+.answer:nth-child(2) {
+  background-color: #d89e00;
+}
+.answer:nth-child(3) {
+  background-color: #1268cd;
+}
+.answer:nth-child(4) {
+  background-color: #2a8f0d;
+}
+
+.answer:active {
+  box-shadow: 0 0 2px 1px rgb(82, 82, 82);
+}

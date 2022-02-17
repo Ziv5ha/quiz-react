@@ -2,6 +2,7 @@ import React from 'react';
 import jumble from '../helpers/randomizeOrder';
 import RightAnswer from './RightAnswer';
 import WrongAnswer from './WrongAnswer';
+import '../styles/questions.css';
 
 export default function Questions({ question }: { question: Question }) {
   const rightAnswer = (
@@ -11,9 +12,11 @@ export default function Questions({ question }: { question: Question }) {
     <WrongAnswer key={answer} answer={answer} />
   ));
   return (
-    <div>
+    <div className='qustion'>
       <h3>{question.question}</h3>
-      <div>{jumble([rightAnswer, ...wrongAswers])}</div>
+      <div className='answers-container'>
+        {jumble([rightAnswer, ...wrongAswers])}
+      </div>
     </div>
   );
 }
