@@ -1,17 +1,19 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import '../styles/hint.css';
 
 export default function Hint({ hint }: { hint: string }) {
   const [shown, setShown] = useState(false);
   return shown ? (
-    <div>{hint}</div>
+    <div className='hint'>{hint}</div>
   ) : (
     <button
-      className='hint'
+      className='hint-btn'
       onClick={() => {
         setShown(true);
       }}
     >
-      Show Hint
+      <i className='fa-solid fa-lightbulb'></i>
     </button>
   );
 }

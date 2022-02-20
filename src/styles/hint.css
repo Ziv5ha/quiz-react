@@ -1,0 +1,13 @@
+.hint-btn {
+  background-color: #eaeaea;
+  border: none;
+  margin-left: 4.5em;
+  font-size: 3.4em;
+  color: rgb(228, 224, 32);
+}
+.hint {
+  font-size: 1.2em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px 1px rgb(121, 121, 121);
+}

@@ -1,0 +1,46 @@
+.next {
+  position: fixed;
+  bottom: 5%;
+  right: 10%;
+  height: 2em;
+  width: 5em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px 1px rgb(121, 121, 121);
+  border: none;
+  font-size: 2em;
+  color: #eaeaea;
+  background-color: #44168b;
+}
+.confirm-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 5%;
+  width: 80vw;
+  height: 60%;
+  background-color: #eaeaea;
+  padding: 1em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px 1px rgb(121, 121, 121);
+  font-size: 2em;
+}
+.confirm-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.confirm-btn-container > button {
+  width: 45%;
+  height: 2em;
+  font-size: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px 1px rgb(121, 121, 121);
+  border: none;
+}
+.confirm-btn-container > button:nth-child(1) {
+  background-color: #1268cd;
+}
+.confirm-btn-container > button:nth-child(2) {
+  background-color: #e21c3d;
+}

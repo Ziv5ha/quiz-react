@@ -1,0 +1,11 @@
+.img-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.img-container > img {
+  min-height: 70px;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px 1px rgb(121, 121, 121);
+  margin: 2em 0;
+}
