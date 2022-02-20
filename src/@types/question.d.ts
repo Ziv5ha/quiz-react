@@ -3,3 +3,8 @@ declare interface Question {
   rightAnswer: string;
   wrongAnswers: [string, string, string];
 }
+declare interface LocationImg {
+  img: string;
+  alt: string;
+  hint?: string;
+}
