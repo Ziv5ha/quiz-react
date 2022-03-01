@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
-import { QuestionIndexContext } from './components/IndexContrext';
-import Location from './components/Location';
-import Questions from './components/Questions';
-import json from './questions.json';
-import './styles/app.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CreateQuiz from './createQuiz/CreateQuiz';
+import Home from './Home';
+import Quiz from './takeQuiz/Quiz';
 
-function App() {
-  const [index, setIndex] = useState(0);
-  const elemsArr = json.map((item) =>
-    isLocationImg(item as Question | LocationImg) ? (
-      <QuestionIndexContext.Provider value={{ index, setIndex }}>
-        <Location img={item as LocationImg} />
-      </QuestionIndexContext.Provider>
-    ) : (
-      <QuestionIndexContext.Provider value={{ index, setIndex }}>
-        <Questions question={item as Question} />
-      </QuestionIndexContext.Provider>
-    )
-  );
-  return (index || index === 0) && index < elemsArr.length ? (
-    elemsArr[index]
-  ) : (
-    <div>you won</div>
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/quiz'>About</Link>
+            </li>
+            <li>
+              <Link to='/createQuiz'>Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+                renders the first one that matches the current URL. */}
+        <Routes>
+          <Route path='/quiz'>
+            <Quiz />
+          </Route>
+          <Route path='/createQuiz'>
+            <CreateQuiz />
+          </Route>
+          <Route path='/'>
+            <Home />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-export default App;
-
-const isLocationImg = (item: Question | LocationImg): item is LocationImg => {
-  return (item as LocationImg).img !== undefined;
-};
