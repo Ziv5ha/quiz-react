@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import Navbar from '../global-components/Navbar';
 import Question from './components/Question';
@@ -40,10 +41,15 @@ export default function CreateQuiz() {
     <div>
       <Navbar />
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          console.log(e);
-          console.log(questionArr);
+          try {
+            await axios.post('http://localhost:8080/createQuiz', {
+              questions: questionArr,
+            });
+          } catch (error) {
+            console.log(error);
+          }
         }}
       >
         {questionsElems}

@@ -78,6 +78,7 @@ export default function Question({
         value={localQuestion.question}
         onChange={changeQuestion}
         onBlur={updateGlobalQuestion}
+        required
       />
       <br />
       Right Answer:
@@ -87,6 +88,7 @@ export default function Question({
         value={localQuestion.rightAnswer}
         onChange={changeRightAnswer}
         onBlur={updateGlobalQuestion}
+        required
       />
       <br />
       Wrong Answers:
@@ -96,6 +98,7 @@ export default function Question({
         value={localQuestion.wrongAnswers[0]}
         onChange={changeWrongAnswer0}
         onBlur={updateGlobalQuestion}
+        required
       />
       <br />
       <input
@@ -103,6 +106,7 @@ export default function Question({
         value={localQuestion.wrongAnswers[1]}
         onChange={changeWrongAnswer1}
         onBlur={updateGlobalQuestion}
+        required
       />
       <br />
       <input
@@ -110,6 +114,7 @@ export default function Question({
         value={localQuestion.wrongAnswers[2]}
         onChange={changeWrongAnswer2}
         onBlur={updateGlobalQuestion}
+        required
       />
     </div>
   );
