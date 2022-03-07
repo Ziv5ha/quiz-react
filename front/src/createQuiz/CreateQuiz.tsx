@@ -1,20 +1,17 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Navbar from '../global-components/Navbar';
+import LocationImg from './components/LocationImg';
 import Question from './components/Question';
+import { QuestionArrContext } from './components/QuestionContext';
 
 export default function CreateQuiz() {
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [questionArr, setQuestionArr] = useState<Question[]>([
+  const [questionArr, setQuestionArr] = useState<(Question | LocationImg)[]>([
     { question: '', rightAnswer: '', wrongAnswers: ['', '', ''] },
   ]);
   const [questionsElems, setQuestionsElems] = useState<JSX.Element[]>([
-    <Question
-      key={`question#0}`}
-      questionArr={questionArr}
-      setQuestionArr={setQuestionArr}
-      index={questionIndex}
-    />,
+    <Question key={`question#0}`} index={questionIndex} />,
   ]);
 
   const addQuestion = () => {
@@ -27,23 +24,29 @@ export default function CreateQuiz() {
       ...prev,
       <Question
         key={`question#${questionArr.length}`}
-        questionArr={questionArr}
-        setQuestionArr={setQuestionArr}
         index={questionIndex + 1}
       />,
     ]);
   };
-  //   const createQuizFunc = (e) => {
-  //     e.preventDefault();
-  //     console.log(e);
-  //   };
+  const addLocationImg = () => {
+    setQuestionIndex((prev) => ++prev);
+    setQuestionArr((prev) => [...prev, { img: '', alt: '', hint: '' }]);
+    setQuestionsElems((prev) => [
+      ...prev,
+      <LocationImg
+        key={`question#${questionArr.length}`}
+        index={questionIndex + 1}
+      />,
+    ]);
+  };
+
   const [quizName, setQuizName] = useState('');
   const changeQuizName = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setQuizName(e.target.value);
   };
   return (
-    <div>
+    <QuestionArrContext.Provider value={{ questionArr, setQuestionArr }}>
       <Navbar />
       <form
         onSubmit={async (e) => {
@@ -66,6 +69,7 @@ export default function CreateQuiz() {
         <button type='submit'>Submit</button>
       </form>
       <button onClick={addQuestion}>Add question+</button>
-    </div>
+      <button onClick={addLocationImg}>Add location image+</button>
+    </QuestionArrContext.Provider>
   );
 }

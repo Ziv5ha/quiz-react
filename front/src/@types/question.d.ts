@@ -8,3 +8,10 @@ declare interface LocationImg {
   alt: string;
   hint?: string;
 }
+
+declare interface QuestionsContext {
+  questionArr: (Question | LocationImg)[];
+  setQuestionArr: React.Dispatch<
+    React.SetStateAction<(Question | LocationImg)[]>
+  >;
+}

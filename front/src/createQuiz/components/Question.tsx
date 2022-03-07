@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useQuestionArrContext } from './QuestionContext';
 
 export default function Question({
-  questionArr,
-  setQuestionArr,
+  // questionArr,
+  // setQuestionArr,
   index,
 }: {
-  questionArr: Question[];
-  setQuestionArr: React.Dispatch<React.SetStateAction<Question[]>>;
+  // questionArr: (Question | LocationImg)[];
+  // setQuestionArr: React.Dispatch<
+  // React.SetStateAction<(Question | LocationImg)[]>
+  // >;
   index: number;
 }) {
   const [localQuestion, setLocalQuestion] = useState<Question>({
@@ -14,6 +17,7 @@ export default function Question({
     rightAnswer: '',
     wrongAnswers: ['', '', ''],
   });
+  const { setQuestionArr, questionArr } = useQuestionArrContext();
 
   /**
    * updates local state of the question.

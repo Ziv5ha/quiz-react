@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { createQuizRequest, Question } from '../@types/createQuiz';
+import { createQuizRequest, LocationImg, Question } from '../@types/createQuiz';
 
 const verifyCreateQuiz = (req: Request, _res: Response, next: NextFunction) => {
   if (!req.body.questions) next('missigParams');
@@ -17,8 +17,12 @@ export default verifyCreateQuiz;
 
 const validateQuestion = (questions: any[], next: NextFunction): boolean => {
   questions.forEach((questionObj) => {
-    if (!ValidQuestionType(questionObj)) return false;
+    if (ValidLocationImgType(questionObj)) {
+      if (!questionObj.hint) questionObj.hint = 'No hint given';
+      return true;
+    }
 
+    if (!ValidQuestionType(questionObj)) return false;
     const { question, rightAnswer, wrongAnswers } = questionObj;
     const ValidQuestion = verifyLength(question, 'question', next);
     const ValidCorrect = verifyLength(rightAnswer, 'rightAnswer', next);
@@ -43,6 +47,17 @@ const ValidQuestionType = (question: any): question is Question => {
     typeof question.rightAnswer === 'string' &&
     typeof question.wrongAnswers === 'object' &&
     question.wrongAnswers.length === 3
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const ValidLocationImgType = (locationImg: any): locationImg is LocationImg => {
+  if (
+    typeof locationImg.img === 'string' &&
+    typeof locationImg.alt === 'string' &&
+    (locationImg.hint ? typeof locationImg.hint === 'string' : true)
   ) {
     return true;
   }
