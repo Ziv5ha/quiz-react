@@ -8,13 +8,17 @@ export const createQuizController = (
   res: Response,
   next: NextFunction
 ) => {
-  const quizId = generateID();
+  if (!req.body.quizName) {
+    next('missingQuizName');
+    return;
+  }
+  const { quizName } = req.body;
   const { questions } = req;
 
   if (!questions) throw new Error('missingQuestions');
   try {
     fs.writeFileSync(
-      path.join(__dirname, `../db/${quizId}.json`),
+      path.join(__dirname, `../db/${quizName}.json`),
       JSON.stringify(questions)
     );
     res.send('Quiz Created');
@@ -23,16 +27,4 @@ export const createQuizController = (
     // console.log(error);
     next('somethingWentWrong');
   }
-};
-
-// Helpers
-
-const generateID = (): string => {
-  let str = '';
-  const bank = 'abcdefghijklmnopqrstuvwxyzABCDUFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  while (str.length < 20) {
-    const random = Math.floor(Math.random() * bank.length);
-    str += bank[random];
-  }
-  return str;
 };

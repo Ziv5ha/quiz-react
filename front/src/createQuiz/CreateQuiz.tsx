@@ -37,6 +37,11 @@ export default function CreateQuiz() {
   //     e.preventDefault();
   //     console.log(e);
   //   };
+  const [quizName, setQuizName] = useState('');
+  const changeQuizName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setQuizName(e.target.value);
+  };
   return (
     <div>
       <Navbar />
@@ -45,6 +50,7 @@ export default function CreateQuiz() {
           e.preventDefault();
           try {
             await axios.post('http://localhost:8080/createQuiz', {
+              quizName: quizName,
               questions: questionArr,
             });
           } catch (error) {
@@ -52,6 +58,10 @@ export default function CreateQuiz() {
           }
         }}
       >
+        <h3>
+          Enter Quiz Name:{' '}
+          <input type='text' value={quizName} onChange={changeQuizName}></input>
+        </h3>
         {questionsElems}
         <button type='submit'>Submit</button>
       </form>
