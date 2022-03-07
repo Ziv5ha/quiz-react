@@ -15,6 +15,7 @@
   text-decoration: none;
   white-space: nowrap;
   transition: all 0.4s;
+  z-index: 100;
 }
 .nav-menu > a {
   padding: 0.3em;

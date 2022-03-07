@@ -4,6 +4,7 @@ import Navbar from '../global-components/Navbar';
 import LocationImg from './components/LocationImg';
 import Question from './components/Question';
 import { QuestionArrContext } from './components/QuestionContext';
+import './styles/createQuiz.css';
 
 export default function CreateQuiz() {
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -49,6 +50,7 @@ export default function CreateQuiz() {
     <QuestionArrContext.Provider value={{ questionArr, setQuestionArr }}>
       <Navbar />
       <form
+        className='new-quiz-form'
         onSubmit={async (e) => {
           e.preventDefault();
           try {
@@ -66,10 +68,14 @@ export default function CreateQuiz() {
           <input type='text' value={quizName} onChange={changeQuizName}></input>
         </h3>
         {questionsElems}
-        <button type='submit'>Submit</button>
+        <div className='form-btn-container'>
+          <button type='submit'>Submit</button>
+          <div className='add-questions-container'>
+            <button onClick={addQuestion}>Add question+</button>
+            <button onClick={addLocationImg}>Add location image+</button>
+          </div>
+        </div>
       </form>
-      <button onClick={addQuestion}>Add question+</button>
-      <button onClick={addLocationImg}>Add location image+</button>
     </QuestionArrContext.Provider>
   );
 }
