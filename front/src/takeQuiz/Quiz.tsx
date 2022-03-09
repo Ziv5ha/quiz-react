@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { QuestionIndexContext } from './components/IndexContrext';
 import Location from './components/Location';
 import Questions from './components/Questions';
-import json from './questions.json';
+import json from '../questions.json';
 import './styles/app.css';
 
-function App() {
+function Quiz() {
   const [index, setIndex] = useState(0);
   const elemsArr = json.map((item) =>
     isLocationImg(item as Question | LocationImg) ? (
@@ -25,7 +25,7 @@ function App() {
   );
 }
 
-export default App;
+export default Quiz;
 
 const isLocationImg = (item: Question | LocationImg): item is LocationImg => {
   return (item as LocationImg).img !== undefined;
